@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Auto RT POS Report</title>
+    <script type="text/javascript">
+      function submitFormWithTodayDate() {
+        const today = new Date();
+        const dd = String(today.getDate()).padStart(2, '0');
+        const mm = String(today.getMonth() + 1).padStart(2, '0'); // Months start at 0
+        const yyyy = today.getFullYear();
+        const formattedDate = mm + '/' + dd + '/' + yyyy;
+
+        document.getElementById('startDate').value = formattedDate;
+        document.getElementById('endDate').value = formattedDate;
+
+        document.forms['reportForm'].submit();
+      }
+    </script>
+  </head>
+  <body onload="submitFormWithTodayDate()" style="margin:0;padding:0;">
+    <form id="reportForm" name="reportForm" action="https://www.myrtpos.com/newbdi/Store_Performance_lp.fwx" method="post" target="_blank">
+      <!-- Hidden login info (if supported) -->
+      <input type="hidden" name="username" value="GHANI.REHMAN">
+      <input type="hidden" name="password" value="Technopak$7860">
+
+      <!-- Hidden date fields -->
+      <input type="hidden" id="startDate" name="StartDate">
+      <input type="hidden" id="endDate" name="EndDate">
+    </form>
+  </body>
+</html>
